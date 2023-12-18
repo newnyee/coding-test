@@ -1,7 +1,7 @@
 // 백준 11720 - 숫자의 합
 import java.util.Scanner;
 
-public class P11720_숫자의합 {
+public class Q01_숫자의합구하기 {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
