@@ -1,7 +1,7 @@
 // 백준 1546 - 평균
 import java.util.Scanner;
 
-public class Q02_평균구하기 {
+public class Q002_평균구하기 {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);

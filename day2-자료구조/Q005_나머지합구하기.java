@@ -26,7 +26,7 @@
 * */
 import java.util.*;
 import java.io.*;
-public class Q05_나머지합구하기 {
+public class Q005_나머지합구하기 {
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

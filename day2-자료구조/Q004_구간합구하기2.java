@@ -1,7 +1,7 @@
 // 백준 11660 - 구간 합 구하기 5
 import java.util.*;
 import java.io.*;
-public class Q04_구간합구하기2 {
+public class Q004_구간합구하기2 {
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
