@@ -1,53 +1,70 @@
 /* 백준 1167 - 트리의 지름
- * 깊이 우선 탐색 */
+ * 너비 우선 탐색 */
 
-import java.io.*;
 import java.util.*;
 
 public class Q028_트리의_지름_구하기 {
 
     static ArrayList<int[]>[] A;
     static boolean[] visitArray;
-    static int diameter = 0;
+    static int[] distance;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int V = Integer.parseInt(br.readLine());
+        Scanner sc = new Scanner(System.in);
+        int V = sc.nextInt();
 
         A = new ArrayList[V + 1];
         for (int i = 1; i <= V; i++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            int now = Integer.parseInt(st.nextToken());
-            A[now] = new ArrayList<>();
-            while (st.countTokens() > 1) {
-                int a = Integer.parseInt(st.nextToken());
-                int b = Integer.parseInt(st.nextToken());
-                A[i].add(new int[]{a, b});
+            A[i] = new ArrayList<>();
+        }
+
+        for (int i = 0; i < V; i++) {
+
+            int now = sc.nextInt();
+
+            while (true) {
+                int a = sc.nextInt();
+                if (a == -1) {
+                    break;
+                }
+                int b = sc.nextInt();
+                A[now].add(new int[]{a, b});
             }
         }
 
-        if (V == 1) {
-            System.out.println(0);
-            return;
+        distance = new int[V + 1];
+        visitArray = new boolean[V + 1];
+        bfs(1);
+        int max = 1;
+        for (int i = 2; i <= V; i++) {
+            if (distance[max] < distance[i]) {
+                max = i;
+            }
         }
 
-        for (int i = 1; i <= V; i++) {
-            visitArray = new boolean[V + 1];
-            dfs(i, 0);
-        }
-        System.out.println(diameter);
+        distance = new int[V + 1];
+        visitArray = new boolean[V + 1];
+        bfs(max);
+        Arrays.sort(distance);
+        System.out.println(distance[V]);
     }
 
-    static void dfs(int i, int count) {
 
+    static void bfs(int i) {
+
+        Queue<Integer> myQueue = new LinkedList<>();
+        myQueue.add(i);
         visitArray[i] = true;
-        for (int[] a : A[i]) {
-            if (!visitArray[a[0]]) {
-                dfs(a[0], count + a[1]);
-            } else {
-                if (count > diameter) {
-                    diameter = count;
+        while (!myQueue.isEmpty()) {
+            int now = myQueue.poll();
+            for (int[] j : A[now]) {
+                int a = j[0];
+                int b = j[1];
+                if (!visitArray[a]) {
+                    visitArray[a] = true;
+                    myQueue.add(a);
+                    distance[a] = distance[now] + b;
                 }
             }
         }
