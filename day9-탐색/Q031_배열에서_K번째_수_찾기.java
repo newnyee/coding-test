@@ -21,6 +21,7 @@ public class Q031_배열에서_K번째_수_찾기 {
             long count = 0;
 
             for (int i = 1; i <= N; i++) {
+                // 배열 한줄당 최대 N개이므로 N보다 큰 수가 count될 수 없음, 따라서 min 함수 사용
                 count += Math.min(m / i, N);
             }
 
